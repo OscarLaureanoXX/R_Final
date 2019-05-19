@@ -310,8 +310,53 @@ graph14
 # las condiciones del clima, las condiciones de luz, las condiciones del pavimento, 
 # objetos en la vialidad (Carriageway hazard), el control en el crucero (semáforo, ceder el paso, sin control, etc.)? 
 
-pregunta15clima <- accident %>% filter(Year == 2017) %>% group_by(Weather_Conditions) %>% summarise(n = n())
-pregunta15luz <- accident %>% filter(Year == 2017) %>% group_by(Light_Conditions) %>% summarise(n = n())
-pregunta15pavimento <- accident %>% filter(Year == 2017) %>% group_by(Road_Surface_Conditions) %>% summarise(n = n())
-pregunta15vialidad <- accident %>% filter(Year == 2017) %>% group_by(Carriageway_Hazards) %>% summarise(n = n())
-pregunta15crucero <- accident %>% filter(Year == 2017) %>% group_by(Junction_Control) %>% summarise(n = n())
+pregunta15clima <- accident %>% filter(Year == 2017 & Weather_Conditions != 'Data missing or out of range') %>% group_by(Weather_Conditions) %>% summarise(n = n()) 
+pregunta15luz <- accident %>% filter(Year == 2017 & Light_Conditions != 'Data missing or out of range') %>% group_by(Light_Conditions) %>% summarise(n = n())
+pregunta15pavimento <- accident %>% filter(Year == 2017 & Road_Surface_Conditions != 'Data missing or out of range') %>% group_by(Road_Surface_Conditions) %>% summarise(n = n())
+pregunta15vialidad <- accident %>% filter(Year == 2017 & Carriageway_Hazards != 'Data missing or out of range') %>% group_by(Carriageway_Hazards) %>% summarise(n = n())
+pregunta15crucero <- accident %>% filter(Year == 2017 & Junction_Control != 'Data missing or out of range') %>% group_by(Junction_Control) %>% summarise(n = n())
+
+graph15_clima <- ggplot(data = pregunta15clima) +
+                    geom_bar(mapping = aes(x = Weather_Conditions, y = n, fill = Weather_Conditions), stat = "identity") +
+                    ggtitle('Cantidad de Accidentes por Tipo de Clima', subtitle = waiver()) + 
+                    geom_text(mapping = aes(label = n, y = n + 500, x = Weather_Conditions)) +
+                    ylab('Accidentes') +
+                    ylim(0,130000) +
+                    xlab('Clima') 
+# graph15_clima
+
+graph15_luz <- ggplot(data = pregunta15luz) +
+                    geom_bar(mapping = aes(x = Light_Conditions, y = n, fill = Light_Conditions), stat = "identity") +
+                    ggtitle('Cantidad de Accidentes por Tipo de Luz', subtitle = waiver()) + 
+                    geom_text(mapping = aes(label = n, y = n + 500, x = Light_Conditions)) +
+                    ylab('Accidentes') +
+                    ylim(0,130000) +
+                    xlab('Tipo de Luz') 
+# graph15_luz
+
+graph15_pavimento <- ggplot(data = pregunta15pavimento) +
+                    geom_bar(mapping = aes(x = Road_Surface_Conditions, y = n, fill = Road_Surface_Conditions), stat = "identity") +
+                    ggtitle('Cantidad de Accidentes por Condición del Camino', subtitle = waiver()) + 
+                    geom_text(mapping = aes(label = n, y = n + 500, x = Road_Surface_Conditions)) +
+                    ylab('Accidentes') +
+                    ylim(0,130000) +
+                    xlab('Condición del Camino') 
+# graph15_pavimento
+
+graph15_vialidad <- ggplot(data = pregunta15vialidad) +
+                    geom_bar(mapping = aes(x = Carriageway_Hazards, y = n, fill = Carriageway_Hazards), stat = "identity") +
+                    ggtitle('Cantidad de Accidentes por Peligros en el Camino', subtitle = waiver()) + 
+                    geom_text(mapping = aes(label = n, y = n + 500, x = Carriageway_Hazards)) +
+                    ylab('Accidentes') +
+                    ylim(0,130000) +
+                    xlab('Tipos de Peligros') 
+# graph15_vialidad
+
+graph15_crucero <- ggplot(data = pregunta15crucero) +
+                    geom_bar(mapping = aes(x = Junction_Control, y = n, fill = Junction_Control), stat = "identity") +
+                    ggtitle('Cantidad de Accidentes por Control en Crucero', subtitle = waiver()) + 
+                    geom_text(mapping = aes(label = n, y = n + 500, x = Junction_Control)) +
+                    ylab('Accidentes') +
+                    ylim(0,130000) +
+                    xlab('Tipos de Control') 
+graph15_crucero
