@@ -194,7 +194,7 @@ graph7 <- ggplot(data = pregunta7, aes(x = Light_Conditions, y = n, group = Road
                 ) +
             ggtitle('Condiciones del Camino en Accidentes por Año', subtitle = waiver()) + 
             ylab('Cantidad') +
-            xlab('Condición del Camino') +
+            xlab('Condicion de Luz') +
             ylim(0,390000)
 
 # graph7
