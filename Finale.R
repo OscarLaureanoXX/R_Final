@@ -88,7 +88,7 @@ graph1 <- ggplot(data = pregunta1) +
             geom_smooth(mapping = aes(x = Year, y = n), size = 2) +
             labs(title = 'Accidentes por año', x = 'Año', y = 'Accidentes') + 
             ylim(100000, 150000)
-graph1
+#graph1
 
 
 # 2.- ¿Ha variado la proporción de accidentes graves, no graves y fatales en los últimos años? 
@@ -359,4 +359,29 @@ graph15_crucero <- ggplot(data = pregunta15crucero) +
                     ylab('Accidentes') +
                     ylim(0,130000) +
                     xlab('Tipos de Control') 
-graph15_crucero
+# graph15_crucero
+
+########################################################################################################
+######################################## DESPLEGAR GRÁFICAS ############################################
+########################################################################################################
+# graph1
+# graph2Hombres
+# graph2Mujeres
+# graph3
+# graph4
+# graph5
+# graph6
+# graph7
+# graph8
+# graph9_1
+# graph9_2
+# graph10
+# graph11
+# graph12
+# graph13
+# graph14
+# graph15_clima
+# graph15_luz
+# graph15_pavimento
+# graph15_vialidad
+# graph15_crucero
